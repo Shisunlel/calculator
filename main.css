@@ -1,0 +1,130 @@
+:root {
+  --button-bg: #2c2c2c;
+  --misc-button: #78f0a6;
+  --op-button: #df7443;
+  --number-button: #e2e2e2;
+  --main-bg: #1a1a1a;
+  --digit-section: #1e1e1e;
+  --result: #fff;
+  --black: #2b2b2b;
+}
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--main-bg);
+  color: var(--result);
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  padding: 0.2em;
+  box-shadow: 0 0 0.2em 0 var(--black);
+}
+
+#result__section {
+  padding-top: 5em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  padding-bottom: 1em;
+  text-align: right;
+}
+
+#previous__operation {
+  font-size: 1rem;
+  min-height: 1ch;
+}
+
+#current__result {
+  min-height: 2ch;
+  font-size: 3rem;
+  padding: 0.23em 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#digit__section {
+  display: grid;
+  grid: auto / repeat(4, 1fr);
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  border-radius: 1rem;
+  background: var(--digit-section);
+}
+
+button {
+  background: var(--button-bg);
+  border: 0;
+  font-size: inherit;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 20em;
+  max-width: 100%;
+}
+
+button:not(:disabled):hover,
+button:not(:disabled):focus,
+button:not(:disabled):focus-visible {
+  transform: scale(1.05);
+  transition: 0.7s;
+}
+
+button:disabled{
+    background: #808080;
+    color: #2b2b2b;
+}
+
+#reset,
+#zero {
+  grid-column-start: span 2;
+}
+
+#reset {
+  color: var(--misc-button);
+}
+
+.op__button {
+  color: var(--op-button);
+}
+
+button:not(.op__button):not(.misc__button) {
+  color: var(--number-button);
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    --main-bg: #f9f9f9;
+    --result: #111;
+  }
+
+  #container {
+    --black: #e2e2e2;
+  }
+
+  #digit__section {
+    --digit-section: #f2f2f2;
+  }
+
+  button {
+    --button-bg: #efefef;
+  }
+
+  button:not(.op__button):not(.misc__button) {
+    --number-button: #5b5b5b;
+  }
+}
