@@ -1,41 +1,68 @@
 const digits = document.querySelectorAll(".digit__button");
 const ops = document.querySelectorAll(".op__button");
-const reset_button = document.querySelector('#reset')
+const reset_button = document.querySelector("#reset");
 const current_result = document.querySelector("#current__result");
-current_result.innerText = ""
+const previous_operation = document.querySelector("#previous__operation");
+const dot = document.querySelector("#dot");
+
 let first = "";
 let second = "";
 let operator = "";
+let resultExist = false;
 
 digits.forEach((digit) => {
   digit.addEventListener("click", (e) => {
     if (current_result.innerText.includes(".")) {
-      document.querySelector("#dot").disabled = true;
+      dot.disabled = true;
     }
-    appendToResult(e);
+
+    if (current_result.innerText === "0" || second === null) {
+      current_result.innerText = "";
+    }
+
     if (operator) {
+      if (resultExist) {
+        current_result.innerText = "";
+        resultExist = false;
+      }
+      current_result.innerText += e.target.innerText;
       second = current_result.innerText;
+    } else {
+      appendToResult(e);
     }
   });
 });
 
+//loop through operator except equal
 for (let i = 0; i < ops.length - 1; i++) {
   ops[i].addEventListener("click", (e) => {
     if (/[0-9]/.test(current_result.innerText)) {
-      first = current_result.innerText.match(/[0-9.]+/).toString();
+      if (second && operator) {
+        const result = execute(first, operator, second);
+        current_result.innerText = Math.round(result() * 100) / 100;
+        resultExist = true;
+        second = "";
+        dot.disabled = false;
+        return (first = current_result.innerText);
+      }
+
+      //update first value and display
+      first = current_result.innerText;
       operator = e.target.innerText;
       current_result.innerText = "";
+      
     }
   });
 }
 
+//equal button
 ops[4].addEventListener("click", () => {
-  const result = execute(first, operator, second)();
-  current_result.innerText = result;
-  first = result;
-  operator = ""
-  second = ""
+  if (first && operator && second) {
+    calculate();
+  }
 });
+
+reset_button.onclick = reset;
 
 function appendToResult(e) {
   current_result.innerText += e.target.innerText;
@@ -43,46 +70,56 @@ function appendToResult(e) {
     current_result.offsetWidth + current_result.offsetLeft;
 }
 
-function add() {
-  return "+";
+function add(a, b) {
+  return a + b;
 }
 
-function subtract() {
-  return "-";
+function subtract(a, b) {
+  return a - b;
 }
 
-function multiply() {
-  return "*";
+function multiply(a, b) {
+  return a * b;
 }
 
-function divide() {
-  return "/";
+function divide(a, b) {
+  return a / b;
 }
 
 function execute(first, op, second) {
-  if (!isNaN(first && second)) {
-    switch (op) {
-      case "+":
-        return new Function(`return ${first} ${add()} ${second}`);
-      case "-":
-        return new Function(`return ${first} ${subtract()} ${second}`);
-      case "×":
-        return new Function(`return ${first} ${multiply()} ${second}`);
-      case "/":
-        if (second != 0) {
-          return new Function(`return ${first} ${divide()} ${second}`);
-        }
-        return "Cannot devided by 0";
-      default:
-        return "Invalid symbol";
-    }
+  first = Number(first);
+  second = Number(second);
+  switch (op) {
+    case "+":
+      return new Function(`return ${add(first, second)}`);
+    case "-":
+      return new Function(`return ${subtract(first, second)}`);
+    case "×":
+      return new Function(`return ${multiply(first, second)}`);
+    case "/":
+      if (second === 0) {
+        second = null;
+        return (current_result.innerText = "Cannot divide by 0");
+      }
+      return new Function(`return ${divide(first, second)}`);
+    default:
+      return "Invalid symbol";
   }
-  return "Enter Valid Number";
 }
 
-function reset(){
-    first = "";
-    second = "";
-    operator = "";
-    current_result.innerText = ""
+function reset() {
+  first = "";
+  second = "";
+  operator = "";
+  current_result.innerText = "0";
+  dot.disabled = false;
+}
+
+function calculate() {
+  const result = execute(first, operator, second);
+  current_result.innerText = Math.round(result() * 100) / 100;
+  first = current_result.innerText;
+  operator = "";
+  second = "";
+  dot.disabled = false;
 }
