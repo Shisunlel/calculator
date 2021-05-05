@@ -83,7 +83,7 @@ function inputNumber(e) {
       currentResult.innerText = "";
       resultExist = false;
     }
-    currentResult.innerText += e.target.innerText;
+    appendToResult(e);
     second = currentResult.innerText;
   } else {
     appendToResult(e);
