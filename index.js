@@ -1,4 +1,4 @@
-const allButton = document.querySelectorAll("button");
+const allButton = document.querySelectorAll("section button");
 const multiplyButton = document.querySelector("#multiply");
 const digits = document.querySelectorAll(".digit__button");
 const ops = document.querySelectorAll(".op__button");

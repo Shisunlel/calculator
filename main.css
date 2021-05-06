@@ -7,8 +7,8 @@
   --digit-section: #1e1e1e;
   --result: #fff;
   --black: #2b2b2b;
-  --main-shadow: #65BDBD;
-  --secondary-shadow: #E8AE61;
+  --main-shadow: #65bdbd;
+  --secondary-shadow: #e8ae61;
 }
 
 html,
@@ -28,12 +28,20 @@ body {
   align-items: center;
 }
 
+#toggler {
+  position: absolute;
+  top: 2ch;
+  right: 2ch;
+  border: 0;
+}
+
 #container {
   width: 100%;
   max-width: 400px;
   height: 100%;
   padding: 0.2em;
-  box-shadow: -.2em -.2em .5em .2em var(--main-shadow), .3em .3em .5em .2em var(--secondary-shadow);
+  box-shadow: -0.2em -0.2em 0.5em 0.2em var(--main-shadow),
+    0.3em 0.3em 0.5em 0.2em var(--secondary-shadow);
   transition: box-shadow 1s;
 }
 
@@ -67,7 +75,7 @@ body {
   background: var(--digit-section);
 }
 
-button {
+section > button {
   background: var(--button-bg);
   border: 0;
   font-size: inherit;
@@ -75,19 +83,19 @@ button {
   padding: 0.5em;
   border-radius: 20em;
   max-width: 100%;
-  transition: background .75s;
+  transition: background 0.75s;
 }
 
-button:not(:disabled):hover,
-button:not(:disabled):focus,
-button:not(:disabled):focus-visible {
+section > button:not(:disabled):hover,
+section > button:not(:disabled):focus,
+section > button:not(:disabled):focus-visible {
   outline: 0;
   transform: scale(1.05);
   filter: invert(100%);
   transition: 0.7s;
 }
 
-button:disabled {
+section > button:disabled {
   background: #808080;
   color: #2b2b2b;
 }
@@ -97,7 +105,7 @@ button:disabled {
   grid-column-start: span 2;
 }
 
-#reset {
+.misc__button {
   color: var(--misc-button);
 }
 
@@ -105,7 +113,7 @@ button:disabled {
   color: var(--op-button);
 }
 
-button:not(.op__button):not(.misc__button) {
+section > button:not(.op__button):not(.misc__button) {
   color: var(--number-button);
 }
 
@@ -117,18 +125,19 @@ button:not(.op__button):not(.misc__button) {
 
   #container {
     --black: #e2e2e2;
-    box-shadow: -.2em -.2em .5em .2em var(--secondary-shadow), .3em .3em .5em .2em var(--main-shadow);
+    box-shadow: -0.2em -0.2em 0.5em 0.2em var(--secondary-shadow),
+      0.3em 0.3em 0.5em 0.2em var(--main-shadow);
   }
 
   #digit__section {
     --digit-section: #f2f2f2;
   }
 
-  button {
+  section > button {
     --button-bg: #efefef;
   }
 
-  button:not(.op__button):not(.misc__button) {
+  section > button:not(.op__button):not(.misc__button) {
     --number-button: #5b5b5b;
   }
 }
