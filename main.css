@@ -122,7 +122,7 @@ svg.checkbox{
 
 svg.checkbox .is_checked{
   opacity: 0;
-  fill: yellow;
+  fill: #fff;
   -webkit-transform-origin: 50% 50%;
           transform-origin: 50% 50%;
   -webkit-transform: translateX(200%) rotate(45deg);
@@ -133,7 +133,7 @@ svg.checkbox .is_checked{
 
 svg.checkbox .is_unchecked{
   opacity: 1;
-  fill: #fff;
+  fill: yellow;
   -webkit-transform-origin: 50% 50%;
           transform-origin: 50% 50%;
   -webkit-transform: translateX(0) rotate(0deg);
@@ -145,28 +145,28 @@ svg.checkbox .is_unchecked{
 @-webkit-keyframes animateRing{
   to{
     stroke-dashoffset: 0;
-    stroke: #b0aa28;
+    stroke: #233043;
   }
 }
 
 @keyframes animateRing{
   to{
     stroke-dashoffset: 0;
-    stroke: #b0aa28;
+    stroke: #233043;
   }
 }
 
 @-webkit-keyframes resetRing{
   to{
     stroke-dashoffset: 0;
-    stroke: #233043;
+    stroke: #b0aa28;
   }
 }
 
 @keyframes resetRing{
   to{
     stroke-dashoffset: 0;
-    stroke: #233043;
+    stroke: #b0aa28;
   }
 }
 
