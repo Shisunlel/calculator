@@ -17,23 +17,160 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: var(--main-bg);
-  color: var(--result);
 }
 
 body {
   display: flex;
+  background: var(--main-bg);
+  color: var(--result);
   min-height: 100vh;
   justify-content: center;
   align-items: center;
 }
 
-#toggler {
+.wrapper{
   position: absolute;
-  top: 2ch;
-  right: 2ch;
-  border: 0;
+  top: 2em;
+  right: .5em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
 }
+
+.switch_box{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+}
+
+
+/* Switch 3 Specific Style Start */
+
+.toggler_box{
+	background: var(--main-bg);
+}
+
+.toggle_switch{
+  width: 100px;
+  height: 45px;
+  position: relative;
+}
+
+input[type="checkbox"].toggler{
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  outline: 0;
+  z-index: 1;
+}
+
+svg.checkbox .outer-ring{
+  stroke-dasharray: 375;
+  stroke-dashoffset: 375;
+  -webkit-animation: resetRing .35s ease-in-out forwards;
+          animation: resetRing .35s ease-in-out forwards;
+}
+
+input[type="checkbox"].toggler:checked + svg.checkbox .outer-ring{
+  -webkit-animation: animateRing .35s ease-in-out forwards;
+          animation: animateRing .35s ease-in-out forwards;
+}
+
+input[type="checkbox"].toggler:checked + svg.checkbox .is_checked{
+  opacity: 1;
+  -webkit-transform: translateX(0) rotate(0deg);
+          transform: translateX(0) rotate(0deg);
+}
+
+input[type="checkbox"].toggler:checked + svg.checkbox .is_unchecked{
+  opacity: 0;
+  -webkit-transform: translateX(-200%) rotate(180deg);
+          transform: translateX(-200%) rotate(180deg);
+}
+
+
+svg.checkbox{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+svg.checkbox .is_checked{
+  opacity: 0;
+  fill: yellow;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: translateX(200%) rotate(45deg);
+          transform: translateX(200%) rotate(45deg);
+  -webkit-transition: all .35s;
+  transition: all .35s;
+}
+
+svg.checkbox .is_unchecked{
+  opacity: 1;
+  fill: #fff;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: translateX(0) rotate(0deg);
+          transform: translateX(0) rotate(0deg);
+  -webkit-transition: all .35s;
+  transition: all .35s;
+}
+
+@-webkit-keyframes animateRing{
+  to{
+    stroke-dashoffset: 0;
+    stroke: #b0aa28;
+  }
+}
+
+@keyframes animateRing{
+  to{
+    stroke-dashoffset: 0;
+    stroke: #b0aa28;
+  }
+}
+
+@-webkit-keyframes resetRing{
+  to{
+    stroke-dashoffset: 0;
+    stroke: #233043;
+  }
+}
+
+@keyframes resetRing{
+  to{
+    stroke-dashoffset: 0;
+    stroke: #233043;
+  }
+}
+
+/* Switch 3 Specific Style End */
 
 #container {
   width: 100%;

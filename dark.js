@@ -1,4 +1,4 @@
-let darkMode = sessionStorage.getItem("darkMode");
+let darkMode = localStorage.getItem("darkMode");
 let mainBg = getComputedStyle(document.body).getPropertyValue("--main-bg");
 const container = document.querySelector("#container");
 const digitSection = document.querySelector("#digit__section");
@@ -39,14 +39,14 @@ const setDarkColor = () => {
 const disableDarkMode = () => {
   if (mainBg.trim() === "#1a1a1a") {
     setLightColor();
-    sessionStorage.setItem("darkMode", 1);
+    localStorage.setItem("darkMode", 1);
   }
 };
 
 const enableDarkMode = () => {
   if (mainBg.trim() !== "#1a1a1a") {
     setDarkColor();
-    sessionStorage.setItem("darkMode", null);
+    localStorage.setItem("darkMode", null);
   }
 };
 
@@ -58,7 +58,7 @@ if (darkMode == null || darkMode == 'null') {
 
 darkModeToggler.addEventListener("click", () => {
   mainBg = getComputedStyle(document.body).getPropertyValue("--main-bg");
-  darkMode = sessionStorage.getItem("darkMode");
+  darkMode = localStorage.getItem("darkMode");
   if (darkMode == 1) {
     enableDarkMode();
     return;
